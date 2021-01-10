@@ -1,3 +1,4 @@
+"	Default Settings:
 	unlet! skip_defaults_vim
 	source /usr/share/vim/vim82/defaults.vim
 	set encoding=utf-8
@@ -16,6 +17,15 @@
 "	set path+=**
 	runtime! ftplugin/man.vim
 
+"	Java Syntax:
+	au BufEnter *.java set dictionary=/usr/dic/import,/usr/dic/lang,/usr/dic/Object,/usr/dic/util
+	au BufEnter *.java set complete=k
+	au BufEnter *.java set fdm=syntax fdn=2
+	au BufEnter *.java normal zR
+	highlight Folded ctermbg=236 ctermfg=250
+	let java_highlight_java_lang_ids=1
+	highlight javaConstant cterm=italic ctermfg=214
+
 "	Macros:
 "	^[<80>ýa is <Esc> ???
 "	n : creates new instance on right
@@ -30,6 +40,7 @@
 	let fwrp = '^y$iprivate float €ýa$a;€ýa]}Opublic float get€ýapb€kr€kr€krvU$a() {return €ýapa;}public void set€ýapb€kr€kr€krvU$a(float value) {this.€ýapa = value;}€ýa'
 	let wrp = 'bve"9y^vt "8yiprivate €ýa$a;€ýa]}Opublic €ýa"8pa €ýa"9pbvUiget€ýa$a() {return €ýa"9pa;}public void €ýa"9pbvUiset€ýa$a(€ýa"8pa value) {this.€ýa"9pa = value;}€ýa'
 	let cn = '[{bye€kd/{Opublic €ýapa() {}€ku€ku€ýaf)'
+
 "	Commands:
 "	Cn, Cf : create constructor and fill constructor
 "	TrimVars : used for Doc
@@ -58,48 +69,48 @@
 	command Ddb g/\/\/db\|\/\* db \*\//d
 "	command Pt g/import/s/$/\=printf(" \/\/t%d", line('.')-2)
 	
-	
-"	Java Syntax:
-	au BufEnter *.java set dictionary=/usr/dic/import,/usr/dic/lang,/usr/dic/Object,/usr/dic/util
-	au BufEnter *.java set complete=k
-	au BufEnter *.java set fdm=syntax fdn=2
-	au BufEnter *.java normal zR
-	highlight Folded ctermbg=236 ctermfg=250
-	let java_highlight_java_lang_ids=1
-	highlight javaConstant cterm=italic ctermfg=214
-	
 "	Mappings:
+"	puts the last word in ()/<>, deleting the whitespace before it:
+	inoremap <C-a> @, <Esc>:s/, /,/g<CR>f@T i<BS>(<Esc>f@i)<Esc>:s/,/, /g<CR>f@s<Del><Del>
+	inoremap <C-s> @, <Esc>:s/, /,/g<CR>f@T i<BS><<Esc>f@i><Esc>:s/,/, /g<CR>f@s<Del><Del>
+"	copy word:
+	inoremap <C-c> <Esc>yiwea
+"	back/end of word:
+	inoremap <C-b> <Esc>bi
+	inoremap <C-e> <Esc>ei<Right>
+"	copies the word above/below:
+	inoremap <C-y> a<BS>klyejpa
+	inoremap <C-q> a<BS>jlyekpa
+"	start of the line and end of the line:
+	inoremap <C-f> <Esc>^i
+	inoremap <C-g> <End>
+"	arrow movements:
+	inoremap <C-h> <Left>
+	inoremap <C-l> <Right>
+	inoremap <C-k> <Up>
+	inoremap <C-j> <Down>
+"	fastjump to a new line and backspace:
+	inoremap <C-x> <End><CR>
+	inoremap <C-z> <BS>
+"	sets autocomplete in buffer mode and pastes the first in queue:
+	inoremap <C-p> .<BS><Esc>:set complete=.,u<CR>a<C-n>
+"	sets autocomplete in dictionary mode and pastes the first in queue:
+	inoremap <C-_> .<BS><Esc>:set complete=k<CR>a<C-n>
+"	changing between the files:
+	nnoremap <S-b> :bn<CR>
+	nnoremap <C-b> :bp<CR>
+	nnoremap <S-Tab> :e<Space>
+	nnoremap <C-I> :b<Space>
+	
+"	Alt Hotkeys:
+	execute "set <A-;>=\e;"
+	inoremap <A-;> ;<CR>
 	execute "set <A-=>=\e="
 	inoremap <A-=> <Space>+ 
 	execute "set <A-->=\e-"
 	inoremap <A--> <Space>- 
 	execute "set <A-'>=\e'"
 	inoremap <A-'> ""<Left>
-	inoremap <C-a> @, <Esc>:s/, /,/g<CR>f@T i<BS>(<Esc>f@i)<Esc>:s/,/, /g<CR>f@s<Del><Del>
-	inoremap <C-s> @, <Esc>:s/, /,/g<CR>f@T i<BS><<Esc>f@i><Esc>:s/,/, /g<CR>f@s<Del><Del>
-	inoremap <C-c> <Esc>yiwea
-	inoremap <C-b> <Esc>bi
-	inoremap <C-e> <Esc>ei<Right>
-	inoremap <C-y> #<BS>klyejpa
-	inoremap <C-q> #<BS>jlyekpa
-	inoremap <C-f> ^i
-	inoremap <C-g> <End>
-	inoremap <C-h> <Left>
-	inoremap <C-l> <Right>
-	inoremap <C-k> <Up>
-	inoremap <C-j> <Down>
-	inoremap <C-x> <End><CR>
-	inoremap <C-z> <BS>
-	execute "set <A-;>=\e;"
-	inoremap <A-;> ;<CR>
-	inoremap <C-p> .<BS><Esc>:set complete=.,u<CR>a<C-n>
-	inoremap  .<BS><Esc>:set complete=k<CR>a<C-n>
-	nnoremap <S-b> :bn<CR>
-	nnoremap <C-b> :bp<CR>
-	nnoremap <S-Tab> :e<Space>
-	nnoremap <C-I> :b<Space>
-	
-"	Hotkeys From Sxhkdrc:
 	execute "set <A-n>=\en"
 	inoremap <A-n> <Esc>@n
 	execute "set <A-q>=\eq"
