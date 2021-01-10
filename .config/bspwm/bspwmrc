@@ -1,0 +1,31 @@
+#! /bin/sh
+
+### startup
+~/.fehbg &
+sxhkd &
+tint2 &
+
+### bsp settings
+bspc monitor -d ♔ ♙ ♗ ♘ ♖ ♕
+
+bspc config top_padding		30
+bspc config border_width	2
+bspc config window_gap		0
+
+bspc config split_ratio		0.63
+bspc config borderless_monocle	true
+bspc config gapless_monocle	true
+bspc config pointer_modifier	shift
+
+### bsp rules
+#bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Gsimplecal border=off
+
+### master & stack layout
+#bspc rule -a *:* node=@/2
+
+### bsp colors
+bspc config normal_border_color "#090909"
+bspc config focused_border_color "#f24828"
+bspc config presel_feedback_color "#390d00"
+### end
