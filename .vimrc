@@ -111,6 +111,7 @@
 	inoremap <A--> <Space>- 
 	execute "set <A-'>=\e'"
 	inoremap <A-'> ""<Left>
+"	the next alt shortcut generates new autoful after the declaration
 	execute "set <A-n>=\en"
 	inoremap <A-n> <Esc>@n
 	execute "set <A-q>=\eq"
