@@ -127,7 +127,8 @@
 	execute "set <A-m>=\em"
 	inoremap <A-m> public class {<CR>public static void main (String[] args) {<CR>}<CR>}<Esc><Up><Up><Up>f{i
 	execute "set <A-c>=\ec"
-	inoremap <A-c> public class {<CR>}<Esc><Up>f{i
+"	if typed, putes the parameter between 'public' and 'class'
+	inoremap <A-c> <Esc>^ic<Space><Esc>$a<Space><Esc>^dwi<Space><Esc>d$ipublic<C-r>"class {<CR>}<Esc><Up>f{i
 	execute "set <A-v>=\ev"
 	inoremap <A-v> public void () {<CR>}<Esc><Up>f(i
 	execute "set <A-o>=\eo"
@@ -193,4 +194,4 @@
 	inoremap <A-s>6 switch(n) {<CR>case 1:<CR>break;<CR>case 2:<CR>break;<CR>case 3:<CR>break;<CR>case 4:<CR>break;<CR>case 5:<CR>break;<CR>case 6:<CR>break;<CR>default:<CR>break;<CR>}<Esc>
 	inoremap <A-s>7 switch(n) {<CR>case 1:<CR>break;<CR>case 2:<CR>break;<CR>case 3:<CR>break;<CR>case 4:<CR>break;<CR>case 5:<CR>break;<CR>case 6:<CR>break;<CR>case 7:<CR>break;<CR>default:<CR>break;<CR>}<Esc>
 	inoremap <A-s>8 switch(n) {<CR>case 1:<CR>break;<CR>case 2:<CR>break;<CR>case 3:<CR>break;<CR>case 4:<CR>break;<CR>case 5:<CR>break;<CR>case 6:<CR>break;<CR>case 7:<CR>break;<CR>case 8:<CR>break;<CR>default:<CR>break;<CR>}<Esc>
-	inoremap <A-s>0 while(true) {<CR>}<Esc>O
+	inoremap <A-s>0 while(true) {<CR>}<Esc>
