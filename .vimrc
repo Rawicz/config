@@ -2,10 +2,12 @@
 	unlet! skip_defaults_vim
 	source /usr/share/vim/vim82/defaults.vim
 	set encoding=utf-8
+"	dark/light, hard/medium/soft
 	set background=dark
-	let g:gruvbox_contrast_dark = 'medium'
+	let g:gruvbox_contrast_dark = 'soft'
 	colorscheme gruvbox
 	set number
+	set relativenumber
 	set list
 "	set listchars=tab:»»·
 	set listchars=tab:\ \ 𝄄
@@ -78,9 +80,8 @@
 "	back/end of word:
 	inoremap <C-b> <Esc>bi
 	inoremap <C-e> <Esc>ei<Right>
-"	copies the word above/below:
-	inoremap <C-y> a<BS>klyejpa
-	inoremap <C-q> a<BS>jlyekpa
+"	copies the word above:
+	inoremap <C-y> a<BS><Esc>k^yejpa
 "	start of the line and end of the line:
 	inoremap <C-f> <Esc>^i
 	inoremap <C-g> <End>
@@ -90,8 +91,8 @@
 	inoremap <C-k> <Up>
 	inoremap <C-j> <Down>
 "	fastjump to a new line and backspace:
-	inoremap <C-x> <End><CR>
-	inoremap <C-z> <BS>
+	inoremap <C-z> <End><CR>
+	inoremap <C-q> <BS>
 "	sets autocomplete in buffer mode and pastes the first in queue:
 	inoremap <C-p> .<BS><Esc>:set complete=.,u<CR>a<C-n>
 "	sets autocomplete in dictionary mode and pastes the first in queue:
@@ -138,7 +139,7 @@
 	execute "set <A-i>=\ei"
 	inoremap <A-i> java.util.Scanner input = new java.util.Scanner(System.in);<Esc>
 	execute "set <A-x>=\ex"
-	inoremap <A-x> try {<CR>} catch(Exception e) {<CR>}<Esc>
+	inoremap <A-x> try {<CR>} catch(Exception e) {<CR>}<Esc><Up>f(a
 	execute "set <A-t>=\et"
 	inoremap <A-t> throw new RuntimeException("");
 	execute "set <A-e>=\ee"
