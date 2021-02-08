@@ -20,7 +20,7 @@ bspc config pointer_modifier	shift
 ### bsp rules
 #bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Gsimplecal border=off
-bspc rule -a android-studio state=floating border=off
+bspc rule -a jetbrains-studio state=floating border=off
 
 ### master & stack layout
 #bspc rule -a *:* node=@/2
