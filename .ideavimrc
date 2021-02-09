@@ -1,0 +1,22 @@
+"	comment
+	set relativenumber
+
+	command Odb %s/\/\/db/\/* db *\//g
+	command Cdb %s/\/\* db \*\//\/\/db/g
+
+"	arrow movements:
+	inoremap <C-h> <Left>
+	inoremap <C-l> <Right>
+	inoremap <C-k> <Up>
+	inoremap <C-j> <Down>
+"	fastjump to a new line and backspace:
+	inoremap <C-z> <End><CR>
+	inoremap <C-q> <BS>
+"	back/end of word:
+	inoremap <C-b> <Esc>bi
+	inoremap <C-e> <Esc>ei<Right>
+"	copy word:
+	inoremap <C-c> <Esc>yiwea
+"	puts the last word in ()/<>, deleting the whitespace before it:
+	inoremap <C-a> @, <Esc>:s/, /,/g<CR>f@T i<BS>(<Esc>f@i)<Esc>:s/,/, /g<CR>f@s<Del><Del>
+	inoremap <C-s> @, <Esc>:s/, /,/g<CR>f@T i<BS>\<<Esc>f@i><Esc>:s/,/, /g<CR>f@s<Del><Del>
