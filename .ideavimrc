@@ -1,9 +1,12 @@
 "	comment
+	set number
 	set relativenumber
 
 	command Odb %s/\/\/db/\/* db *\//g
 	command Cdb %s/\/\* db \*\//\/\/db/g
 
+"	inbrace in try-catch block:
+	vnoremap <C-t> dOtry {<CR>} catch(Exception e<RIGHT> {<Esc>P]}f(a
 "	arrow movements:
 	inoremap <C-h> <Left>
 	inoremap <C-l> <Right>

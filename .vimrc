@@ -72,6 +72,8 @@
 "	command Pt g/import/s/$/\=printf(" \/\/t%d", line('.')-2)
 	
 "	Mappings:
+"	inbrace in try-catch block:
+	vnoremap <C-t> dOtry{<CR>} catch(Exception) {<CR>}<Esc><UP>PviB>
 "	puts the last word in ()/<>, deleting the whitespace before it:
 	inoremap <C-a> @, <Esc>:s/, /,/g<CR>f@T i<BS>(<Esc>f@i)<Esc>:s/,/, /g<CR>f@s<Del><Del>
 	inoremap <C-s> @, <Esc>:s/, /,/g<CR>f@T i<BS><<Esc>f@i><Esc>:s/,/, /g<CR>f@s<Del><Del>
