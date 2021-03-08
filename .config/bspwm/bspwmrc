@@ -21,6 +21,8 @@ bspc config pointer_modifier	shift
 #bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Gsimplecal border=off
 bspc rule -a jetbrains-studio state=floating
+bspc rule -a qimgv state=floating
+bspc rule -a Sxiv state=floating 
 
 ### master & stack layout
 #bspc rule -a *:* node=@/2
