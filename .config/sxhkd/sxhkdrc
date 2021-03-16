@@ -2,6 +2,34 @@
 
 #Menu ; r
 #	sleep 0.12; xvkbd -text 'for (int i = 0; i < ; i++) \{\r\}\e\[Up]f\)F;i';
+KP_Insert ; KP_Right
+	sleep 0.15; xdotool type $'→';
+KP_Insert ; KP_Left
+	sleep 0.15; xdotool type $'←';
+KP_Insert ; KP_Up
+	sleep 0.15; xdotool type $'↑';
+KP_Insert ; KP_Down
+	sleep 0.15; xdotool type $'↓';
+KP_Insert ; KP_Subtract
+	sleep 0.15; xdotool type $'¬';
+KP_Insert ; KP_Prior
+	sleep 0.15; xdotool type $'∨';
+KP_Insert ; KP_Home
+	sleep 0.15; xdotool type $'∧';
+KP_Insert ; KP_Begin
+	sleep 0.15; xdotool type $'⇒';
+KP_Insert ; KP_End
+	sleep 0.15; xdotool type $'∃';
+KP_Insert ; KP_Next
+	sleep 0.15; xdotool type $'∀';
+KP_Insert ; KP_Multiply
+	sleep 0.15; xdotool type $'⊻';
+KP_Insert ; KP_Add
+	sleep 0.15; xdotool type $'≡';
+KP_Insert ; KP_Enter
+	sleep 0.15; xdotool type $'—';
+KP_Insert ; KP_Delete
+	sleep 0.15; xdotool type $'\u0301';
 
 ### wm independent hotkeys
 
@@ -19,10 +47,12 @@ ctrl + @Print
 # programms
 super + {Return,w,d,e}
 	{alacritty,brave,~/scripts/bsp_rox,rox}
+super + c
+	bspc rule -a ROX-Filer -o state=floating && rox ~/Downloads
 super + x
 	dmenu_run -fn 'DejaVu Sans Mono Book-14' -sb 'Orange Red'
 super + a
-	alacritty --working-directory /home/wrabbit/chest & sleep 0.5; bspc rule -a ROX-Filer -o split_dir=south split_ratio=0.85 & rox /home/wrabbit/chest
+	alacritty --working-directory /home/wrabbit/chest & sleep 0.8; bspc rule -a ROX-Filer -o focus=off split_dir=south split_ratio=0.85 & rox /home/wrabbit/chest
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd

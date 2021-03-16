@@ -19,6 +19,12 @@
 "	set path+=**
 	runtime! ftplugin/man.vim
 
+"	Txt Settings:
+	au BufEnter *.txt set background=light
+	au BufEnter *.txt let g:gruvbox_contrast_light = 'soft'
+	au BufEnter *.txt colorscheme gruvbox
+	au BufEnter *.txt set listchars=tab:\ \ ·
+
 "	Java Syntax:
 	au BufEnter *.java set dictionary=/usr/dic/import,/usr/dic/lang,/usr/dic/Object,/usr/dic/util
 	au BufEnter *.java set complete=k
@@ -72,6 +78,11 @@
 "	command Pt g/import/s/$/\=printf(" \/\/t%d", line('.')-2)
 	
 "	Mappings:
+"	move 5 lines:
+	nnoremap <C-j> 5<CR>
+	nnoremap <C-k> 5-
+	nnoremap <C-h> ^
+	nnoremap <C-l> $
 "	inbrace in try-catch block:
 	vnoremap <C-t> dOtry{<CR>} catch(Exception) {<CR>}<Esc><UP>PviB>
 "	puts the last word in ()/<>, deleting the whitespace before it:
@@ -83,7 +94,7 @@
 	inoremap <C-b> <Esc>bi
 	inoremap <C-e> <Esc>ei<Right>
 "	copies the word above:
-	inoremap <C-y> a<BS><Esc>k^yejpa
+	inoremap <C-y> <Esc>klyehjpa
 "	start of the line and end of the line:
 	inoremap <C-f> <Esc>^i
 	inoremap <C-g> <End>
