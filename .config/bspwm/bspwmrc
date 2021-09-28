@@ -8,11 +8,11 @@ tint2 &
 ### bsp settings
 bspc monitor -d ♔ ♙ ♗ ♘ ♖ ♕
 
-bspc config top_padding		30
+bspc config top_padding		28
 bspc config border_width	2
 bspc config window_gap		0
 
-bspc config split_ratio		0.70
+bspc config split_ratio		0.68
 bspc config borderless_monocle	true
 bspc config gapless_monocle	true
 bspc config pointer_modifier	shift
@@ -20,9 +20,12 @@ bspc config pointer_modifier	shift
 ### bsp rules
 #bspc rule -a Gimp desktop='^8' state=floating follow=on
 bspc rule -a Gsimplecal border=off
-bspc rule -a jetbrains-studio state=floating
+#bspc rule -a jetbrains-studio state=floating
 bspc rule -a qimgv state=floating
+bspc rule -a ROX-Filer state=floating
 bspc rule -a Sxiv state=floating 
+bspc rule -a "Crow Translate" state=floating 
+bspc rule -a mpv state=floating
 
 ### master & stack layout
 #bspc rule -a *:* node=@/2

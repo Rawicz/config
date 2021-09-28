@@ -2,6 +2,7 @@
 
 #Menu ; r
 #	sleep 0.12; xvkbd -text 'for (int i = 0; i < ; i++) \{\r\}\e\[Up]f\)F;i';
+# logical operands
 KP_Insert ; KP_Right
 	sleep 0.15; xdotool type $'→';
 KP_Insert ; KP_Left
@@ -39,20 +40,27 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	xbacklight -dec 25
 # keymaps
-alt + {1,2,3}
-	setxkbmap {us,ru,ua}
+alt + {1,2,3,5}
+	setxkbmap {us,ru,ua,fr}
 # scripts
+Print
+	scrot '%Y-%m-%d_$wx$h.png' -s -e 'xclip -selection clipboard -t "image/png" < $f && mv $f ~/chest/stuff'
+# && mv $f ~/chest/stuff && bspc rule -a qimgv -o sticky=on && qimgv ~/chest/stuff/$f'
 ctrl + @Print
 	scrot '%Y-%m-%d_$wx$h.png' -s -e 'xclip -selection clipboard -t "image/png" < $f && rm $f'
+alt + @Print
+	scrot '%Y-%m-%d_$wx$h.png' -e 'xclip -selection clipboard -t "image/png" < $f && qimgv $f && rm $f'
 # programms
-super + {Return,w,d,e}
-	{alacritty,brave,~/scripts/bsp_rox,rox}
+super + {Return,w,b,d,v}
+	{alacritty,qutebrowser,brave,~/scripts/bsp_rox,vime}
 super + c
-	bspc rule -a ROX-Filer -o state=floating && rox ~/Downloads
+	crow
+super + e
+	bspc rule -a \* -o state=tiled && rox
 super + x
 	dmenu_run -fn 'DejaVu Sans Mono Book-14' -sb 'Orange Red'
 super + a
-	alacritty --working-directory /home/wrabbit/chest & sleep 0.8; bspc rule -a ROX-Filer -o focus=off split_dir=south split_ratio=0.85 & rox /home/wrabbit/chest
+	alacritty --working-directory /home/wrabbit/chest & sleep 0.8; bspc rule -a ROX-Filer -o focus=off split_dir=south split_ratio=0.85 state=tiled & rox /home/wrabbit/chest
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
@@ -69,8 +77,8 @@ super + Escape
 ### bspwm hotkeys
 
 # quit/restart bspwm
-super + alt + {q,r}
-	bspc {quit,wm -r}
+#super + alt + {q,r}
+#	bspc {quit,wm -r}
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
@@ -78,11 +86,10 @@ super + {_,shift + }q
 super + m
 	bspc desktop -l next
 # send the newest marked node to the newest preselected node
-super + y
-	bspc node newest.marked.local -n newest.!automatic.local
+#super + y
+#	bspc node newest.marked.local -n newest.!automatic.local
 # swap the current node and the biggest node
-super + g
-	bspc node -s biggest
+#	bspc node -s biggest
 
 
 ### state/flags
@@ -90,21 +97,23 @@ super + g
 # set the window state
 super + {t,shift + t,r,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+super + g
+	bspc node -g sticky
 # set the node flags
-super + ctrl + {m,x,y,z}
-	bspc node -g {marked,locked,sticky,private}
+#super + ctrl + {m,x,y,z}
+#	bspc node -g {marked,locked,sticky,private}
 
 ### focus/swap
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+	bspc node -{f,s} {west,south,north,east}.!floating
 # focus the node for the given path jump
-super + {p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+super + {comma,period}
+	bspc node -f @{first,second}
 # focus the next/previous node in the current desktop
-super + {_,shift + }c
-	bspc node -f {next,prev}.local
+super + {u,i}
+	bspc node -f {prev,next}.local.floating
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
@@ -112,19 +121,22 @@ super + bracket{left,right}
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 # focus the older or newer node in the focus history
-super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
-# focus or send to the given desktop
-super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+#super + {o,i}
+#	bspc wm -h off; \
+#	bspc node {older,newer} -f; \
+#	bspc wm -h on
+# focus to the given desktop
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+# send to the given desktop
+super + shift + {1-9,0}
+	bspc node -d '^{1-9,6}'
 
 ### preselect
 
 # preselect the direction
-super + {@button1,@button5,@button4,@button3}
-	bspc node -p {west,south,north,east}
+#super + {@button1,@button5,@button4,@button3}
+#	bspc node -p {west,south,north,east}
 super + alt + {h,j,k,l}
 	bspc node -p {west,south,north,east}
 # preselect the ratio
