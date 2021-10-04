@@ -94,7 +94,7 @@
 	inoremap <C-b> <Esc>bi
 	inoremap <C-e> <Esc>ei<Right>
 "	copies the word above:
-	inoremap <C-y> <Esc>klyehjpa
+	inoremap <C-y> $<UP><Esc>ywjpF$s<Esc>ea
 "	start of the line and end of the line:
 	inoremap <C-f> <Esc>^i
 	inoremap <C-g> <End>
